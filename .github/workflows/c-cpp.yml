@@ -20,6 +20,7 @@ jobs:
       uses: actions/cache@v4
       with:
         path: build
+        key: build
     - name: make
       run: make -j 2
     - uses: actions/upload-artifact@v4
