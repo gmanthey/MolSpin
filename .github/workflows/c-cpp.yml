@@ -17,3 +17,7 @@ jobs:
       run: sudo apt update && sudo apt install -y liblapack-dev libblas-dev libboost-dev libarmadillo-dev libopenblas64-openmp-dev
     - name: make
       run: make -j 2
+    - uses: actions/upload-artifact@v4
+      with:
+        name: Molspin Executable
+        path: molspin
