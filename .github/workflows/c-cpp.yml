@@ -14,11 +14,15 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: dependencies
-      run: sudo apt update && sudo apt install liblapack-dev libblas-dev libboost-dev libarmadillo-dev libopenblas64-openmp-dev
+      run: sudo apt update && sudo apt install -y liblapack-dev libblas-dev libboost-dev libarmadillo-dev libopenblas64-openmp-dev
     - name: cache-build
       id: cache-build
       uses: actions/cache@v4
       with:
         path: build
     - name: make
-      run: make
+      run: make -j 2
+    - uses: actions/upload-artifact@v4
+      with:
+        name: Molspin Executable
+        path: molspin
