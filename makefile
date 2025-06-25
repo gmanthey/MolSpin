@@ -20,7 +20,7 @@
 # Note that this line should be added to LFLAGS only.
 # --------------------------------------------------------------------------
 # Compile using Armadillo, here assuming OpenBLAS and Lapack is used
-ARMADILLO = -larmadillo -lopenblas64 -llapack -fopenmp -DARMA_NO_DEBUG
+ARMADILLO = -larmadillo -lopenblas -llapack -fopenmp -DARMA_NO_DEBUG
 # For an installation in a non-standard location, use:
 # ARMADILLO = -I/path/to/armadillo/installdir/include/ -DARMA_DONT_USE_WRAPPER -fopenmp
 # --------------------------------------------------------------------------

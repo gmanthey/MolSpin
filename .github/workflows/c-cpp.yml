@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: dependencies
-      run: sudo apt update && sudo apt install -y liblapack-dev libblas-dev libboost-dev libarmadillo-dev libopenblas64-openmp-dev
+      run: sudo apt update && sudo apt install -y liblapack-dev libblas-dev libboost-dev libarmadillo-dev libopenblas-openmp-dev
     - name: cache-build
       id: cache-build
       uses: actions/cache@v4
