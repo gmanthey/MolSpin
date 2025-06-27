@@ -14,7 +14,18 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: dependencies
-      run: sudo apt update && sudo apt install -y liblapack-dev libblas-dev libboost-dev libarmadillo-dev libopenblas-openmp-dev
+      run: sudo apt update && sudo apt install -y liblapack-dev libblas-dev libboost-dev libarmadillo-dev libopenblas-openmp-dev cmake
+    - name: libarmadillo
+      run: |
+        cd /tmp/ 
+        curl -X GET -L -o libarmadillo.tar.xz https://sourceforge.net/projects/arma/files/armadillo-12.8.4.tar.xz/download 
+        tar -xJf /tmp/libarmadillo.tar.xz 
+        cd armadillo-12.8.4
+        mkdir build 
+        cd build 
+        cmake .. 
+        make -j 2
+        make install
     - name: cache-build
       id: cache-build
       uses: actions/cache@v4
