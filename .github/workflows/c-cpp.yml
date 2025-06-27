@@ -25,7 +25,7 @@ jobs:
         cd build 
         cmake .. 
         make -j 2
-        make install
+        sudo make install
     - name: cache-build
       id: cache-build
       uses: actions/cache@v4
