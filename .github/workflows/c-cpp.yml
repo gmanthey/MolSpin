@@ -10,7 +10,7 @@ jobs:
   build:
 
     runs-on: self-hosted
-    container: ubuntu:20.04
+    container: ubuntu:18.04
 
     steps:
     - uses: actions/checkout@v4
@@ -38,7 +38,7 @@ jobs:
         path: build
         key: build
     - name: make
-      run: make -j 2
+      run: make -j 16
     - uses: actions/upload-artifact@v4
       with:
         name: Molspin Executable
