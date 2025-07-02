@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: dependencies
-      run: apt update && apt install -y liblapack-dev libblas-dev libboost-dev libarmadillo-dev libopenblas-openmp-dev cmake
+      run: sed --in-place --regexp-extended "s/(\/\/)(archive\.ubuntu)/\1de.\2/" /etc/apt/sources.list.d/ubuntu.sources && apt update && apt install -y liblapack-dev libblas-dev libboost-dev libarmadillo-dev libopenblas-openmp-dev cmake
     - name: libarmadillo
       run: |
         cd /tmp/ 
