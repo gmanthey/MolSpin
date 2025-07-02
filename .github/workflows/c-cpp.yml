@@ -9,10 +9,23 @@ on:
 jobs:
   build:
 
-    runs-on: self-hosted
+    runs-on: ubuntu-22.04
 
     steps:
     - uses: actions/checkout@v4
+    - name: dependencies
+      run: sudo apt update && sudo apt install -y liblapack-dev libblas-dev libboost-dev libarmadillo-dev libopenblas-openmp-dev cmake
+    - name: libarmadillo
+      run: |
+        cd /tmp/ 
+        curl -X GET -L -o libarmadillo.tar.xz https://sourceforge.net/projects/arma/files/armadillo-12.8.4.tar.xz/download 
+        tar -xJf /tmp/libarmadillo.tar.xz 
+        cd armadillo-12.8.4
+        mkdir build 
+        cd build 
+        cmake .. 
+        make -j 2
+        sudo make install
     - name: cache-build
       id: cache-build
       uses: actions/cache@v4
@@ -20,7 +33,7 @@ jobs:
         path: build
         key: build
     - name: make
-      run: make -j 16
+      run: make -j 2
     - uses: actions/upload-artifact@v4
       with:
         name: Molspin Executable
