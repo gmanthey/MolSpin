@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: dependencies
-      run: sudo apt update && sudo apt install -y liblapack-dev libblas-dev libboost-dev libarmadillo-dev libopenblas-openmp-dev cmake
+      run: apt update && apt install -y liblapack-dev libblas-dev libboost-dev libarmadillo-dev libopenblas-openmp-dev cmake
     - name: libarmadillo
       run: |
         cd /tmp/ 
@@ -26,7 +26,7 @@ jobs:
         cd build 
         cmake .. 
         make -j 2
-        sudo make install
+        make install
     - name: cache-build
       id: cache-build
       uses: actions/cache@v4
