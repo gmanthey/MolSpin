@@ -10,7 +10,7 @@ jobs:
   build:
 
     runs-on: self-hosted
-    container: ubuntu:18.04
+    container: ubuntu:18.10
 
     steps:
     - uses: actions/checkout@v4
