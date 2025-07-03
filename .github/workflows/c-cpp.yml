@@ -10,7 +10,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    container: debian:10
+    container: ghcr.io/gmanthey/molspin-build-env:dockerenv
 
     steps:
     - uses: actions/checkout@v4
