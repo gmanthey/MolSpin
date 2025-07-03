@@ -18,6 +18,7 @@ jobs:
         apt update
         apt install -y curl sudo
         echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+        mkdir -p /github/home
     - uses: awalsh128/cache-apt-pkgs-action@latest
       with:
         packages: libblas-dev libboost-dev libarmadillo-dev libopenblas-dev cmake gcc make build-essential
