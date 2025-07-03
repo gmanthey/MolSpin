@@ -17,7 +17,7 @@ jobs:
     - name: ccache
       uses: hendrikmuhs/ccache-action@v1.2
     - name: make
-      run: make CC="ccache g++ -std=c++17" -j 2
+      run: make CC="ccache g++ -std=c++17" -j 16
     - uses: actions/upload-artifact@v4
       with:
         name: Molspin Executable
