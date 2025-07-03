@@ -14,10 +14,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - run: apt update
+    - run: apt update && apt install curl
     - uses: awalsh128/cache-apt-pkgs-action@latest
       with:
-        packages: libblas-dev libboost-dev libarmadillo-dev libopenblas-dev cmake gcc make build-essential curl
+        packages: libblas-dev libboost-dev libarmadillo-dev libopenblas-dev cmake gcc make build-essential
         version: 1.0 
     - name: libarmadillo
       run: |
