@@ -14,7 +14,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - run: apt update && apt install -y curl
+    - run: |
+        apt update
+        apt install -y curl sudo
+        echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
     - uses: awalsh128/cache-apt-pkgs-action@latest
       with:
         packages: libblas-dev libboost-dev libarmadillo-dev libopenblas-dev cmake gcc make build-essential
