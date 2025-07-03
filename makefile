@@ -102,7 +102,6 @@ $(PATH_SPINAPI_BUILD)/SpinSpace.o: $(PATH_SPINAPI)/SpinSpace.cpp $(PATH_SPINAPI)
 # General compilation rule
 # --------------------------------------------------------------------------
 ./build/%.o: %.cpp %.h
-	echo $@
 	mkdir -p `dirname $@`
 	$(CC) $(CFLAGS) $(SEARCHDIR_MOLSPIN) $< -o $@
 # --------------------------------------------------------------------------
