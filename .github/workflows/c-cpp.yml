@@ -29,23 +29,20 @@ jobs:
     needs: build
     steps:
       - name: Download Artifact
-        shell: python
+        shell: bash
         run: |
-          from subprocess import run, PIPE
-          from json import loads
-          response = run(['curl', '-L',
-            '-H', 'Accept: application/vnd.github+json',
-            '-H', 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}',
-            '-H', 'X-GitHub-Api-Version: 2022-11-28',
-            '${{ github.api_url }}/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts'],
-            stdout=PIPE, text=True).stdout
-          download_url = loads(resonse)['artifacts'][0]['archive_download_url']
-          run(['curl', '-L', 
-            '-H', 'Accept: application/octet-stream',
-            '-H', 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}',
-            '-H', 'X-GitHub-Api-Version: 2022-11-28',
-            download_url, '-o', 'molspin-artifact.zip'])
+          curl -L 
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "X-GitHub-Api-Version: 2022-11-28
+            $(curl -L \
+                -H "Accept: application/vnd.github+json" \
+                -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+                -H "X-GitHub-Api-Version: 2022-11-28" \
+              ${{ github.api_url }}/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts | \
+              python3 -c "import sys, json; print(json.load(sys.stdin)['artifacts'][0]['archive_download_url'])")
+            -o molspin-artifact.zip
       - name: Unzip Artifact
         run: unzip molspin-artifact.zip
       - name: Copy Executable 
-        run: cp molspin /data/programs/molspin/molspin-test
+        run: cp molspin /data/lxd/viking_programs/molspin/molspin-test
