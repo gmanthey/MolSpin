@@ -22,3 +22,15 @@ jobs:
       with:
         name: Molspin Executable
         path: molspin
+
+  deploy:
+    runs-on: self-hosted
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: Molspin Executable
+      - shell: bash
+        run: cp molspin /data/lxd/viking_programs/molspin/molspin-test
