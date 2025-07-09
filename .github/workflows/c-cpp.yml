@@ -43,6 +43,6 @@ jobs:
               python3 -c "import sys, json; print(json.load(sys.stdin)['artifacts'][0]['archive_download_url'])") \
             -o molspin-artifact.zip
       - name: Unzip Artifact
-        run: unzip molspin-artifact.zip
+        run: unzip -o molspin-artifact.zip
       - name: Copy Executable 
         run: cp molspin /data/lxd/viking_programs/molspin/molspin-test
